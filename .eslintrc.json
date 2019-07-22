@@ -8,6 +8,7 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -44,7 +45,8 @@
             "never"
         ],
         "no-trailing-spaces": 2,
-        "no-console": 1
+        "no-console": 1,
+        "no-unused-vars": 1
     },
     "settings": {
         "react": {

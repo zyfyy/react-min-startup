@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import './Clog.css';
 
 class Clog extends Component {
+    static propTypes = {
+        logList: PropTypes.array
+    }
+
     render() {
         return (
             <div className="clog">
@@ -17,10 +21,6 @@ class Clog extends Component {
         );
     }
 }
-
-Clog.propTypes = {
-    logList: PropTypes.array
-};
 
 function mapStateToProps(state) {
     const {logs} = state.clog;

@@ -10,7 +10,8 @@
 # babel
 
 # hot-load
-## 
+## hot-load doc
+https://webpack.docschina.org/api/hot-module-replacement
 ## use hot-loader react-dom
 https://github.com/gaearon/react-hot-loader
 
@@ -26,3 +27,7 @@ https://github.com/gaearon/react-hot-loader
 
 # eslint
 尽量符合百度js的代码规范，在代码开发阶段就能够检测出来一些代码风格问题，防止cr后才去修改，保持良好的代码书写风格
+
+
+# react-router
+这里考虑使用基于history的router
