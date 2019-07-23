@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import {add_clog, clear_clog} from './actions/clog';
+import {add_clog, clear_clog, warning_clear_clog} from './actions/clog';
 import Clog from './components/Clog';
 
 import Home from './containers/Home';
@@ -17,6 +17,7 @@ class App extends Component {
         super();
         this.buttonOnClick = this.buttonOnClick.bind(this);
         this.clearButtonOnClick = this.clearButtonOnClick.bind(this);
+        this.niceClearButtonOnClick = this.niceClearButtonOnClick.bind(this);
     }
 
     static propTypes = {
@@ -32,6 +33,9 @@ class App extends Component {
         this.props.clear_clog();
     }
 
+    niceClearButtonOnClick() {
+        this.props.warning_clear_clog();
+    }
     render () {
         return (
             <Router>
@@ -54,6 +58,7 @@ class App extends Component {
                         <br></br>
                         <button onClick={this.buttonOnClick}>click to clog</button>
                         <button onClick={this.clearButtonOnClick}>click to clear</button>
+                        <button onClick={this.niceClearButtonOnClick}>nice to clear</button>
                         <Clog ls="ls"></Clog>
                     </div>
                 </div>
@@ -66,5 +71,5 @@ class App extends Component {
 // hot load
 export default hot(connect(
     null,
-    {add_clog, clear_clog}
+    {add_clog, clear_clog, warning_clear_clog}
 )(App));
