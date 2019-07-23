@@ -36,9 +36,6 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/about" component={About} />
-                    <Route path="/topics" component={Topics} />
                     <nav className="crumbs">
                         <ol>
                             <li className="crumb"><Link to="/">Home</Link></li>
@@ -48,13 +45,16 @@ class App extends Component {
                         </ol>
                     </nav>
 
+                    <Route exact path="/" component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route path="/topics" component={Topics} />
 
                     <div id="app">
                         flowers flowers
                         <br></br>
                         <button onClick={this.buttonOnClick}>click to clog</button>
                         <button onClick={this.clearButtonOnClick}>click to clear</button>
-                        <Clog></Clog>
+                        <Clog ls="ls"></Clog>
                     </div>
                 </div>
             </Router>

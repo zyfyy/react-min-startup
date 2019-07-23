@@ -1,5 +1,5 @@
+/* eslint-disable no-undef */
 const path = require('path');
-const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 
 let commonConfig = {
@@ -21,14 +21,16 @@ let commonConfig = {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: '/dist/',
         filename: 'bundle.js'
-    },
-}
+    }
+};
 
 let dev = Object.assign({
     devServer: {
         contentBase: path.join(__dirname, 'public/'),
-        port: 3000,
-        publicPath: 'http://localhost:3000/dist/',
+        publicPath: '/dist/',
+        port: 8080,
+        host: 'react-min-app.local',
+        historyApiFallback: true,
         hot: true
     }
 }, commonConfig);
@@ -37,9 +39,10 @@ let dev = Object.assign({
 let prod = Object.assign({
     mode: 'production',
     optimization: {
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin()]
     }
 }, commonConfig);
 
+// eslint-disable-next-line no-console
 console.log('webpack:', process.env.NODE_ENV);
 module.exports = process.env.NODE_ENV === 'production' ? prod : dev;

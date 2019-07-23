@@ -24,10 +24,19 @@ https://github.com/gaearon/react-hot-loader
 > https://react-redux.js.org/introduction/quick-start
 
 `yarn add react-redux`
+## redux-async
 
 # eslint
 尽量符合百度js的代码规范，在代码开发阶段就能够检测出来一些代码风格问题，防止cr后才去修改，保持良好的代码书写风格
 
 
 # react-router
-这里考虑使用基于history的router
+1. 这里考虑使用基于history的router
+2. 基于webpack dev server 的historyApiFallback，可以保证刷新后仍然能够正常展示
+3. router参数获取
+
+
+#TODO
+- react async
+- antd
+- echarts
