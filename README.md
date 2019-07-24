@@ -37,6 +37,5 @@ https://github.com/gaearon/react-hot-loader
 
 
 #TODO
-- react async
 - antd
 - echarts
