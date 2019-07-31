@@ -42,7 +42,8 @@ let dev = Object.assign({
 }, commonConfig);
 
 // hotload 使用webpack的Hotmodule plugin
-let devServer = Object.assign({}, dev, {
+let devServer = Object.assign({}, commonConfig, {
+    mode: 'development',
     entry:[
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         './src/index.js'

@@ -22,7 +22,8 @@ class App extends Component {
 
     static propTypes = {
         add_clog: PropTypes.func,
-        clear_clog: PropTypes.func
+        clear_clog: PropTypes.func,
+        warning_clear_clog: PropTypes.func
     }
 
     buttonOnClick() {
