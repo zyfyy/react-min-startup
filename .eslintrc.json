@@ -22,7 +22,7 @@
     "rules": {
         "indent": [
             "error",
-            4, { "SwitchCase": 1 }
+            2, { "SwitchCase": 1 }
         ],
         "linebreak-style": [
             "error",
@@ -42,7 +42,7 @@
         ],
         "comma-dangle": [
             2,
-            "never"
+            "always-multiline"
         ],
         "no-trailing-spaces": 2,
         "no-console": 1,

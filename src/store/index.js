@@ -7,7 +7,7 @@ import rootReducer from '../reducers';
 let middleware = [thunk];
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger());
+  middleware.push(createLogger());
 }
 
 export default createStore(rootReducer, applyMiddleware(...middleware));
