@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production webpack --mode production",
+    "build": "NODE_ENV=production webpack --display-used-exports --optimize-minimize",
     "start": "NODE_ENV=development webpack -w",
     "server": "NODE_ENV=development webpack-dev-server --host=0.0.0.0"
   },

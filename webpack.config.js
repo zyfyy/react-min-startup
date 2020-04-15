@@ -43,7 +43,9 @@ let dev = Object.assign(
 );
 
 // hotload 使用webpack的Hotmodule plugin
+
 let devServer = Object.assign({}, dev, {
+  mode: 'development',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/index.js',
@@ -69,4 +71,6 @@ console.log('webpack:', process.env.NODE_ENV);
 module.exports =
   process.env.NODE_ENV === 'production'
     ? prod
-    : process.env.NODE_ENV === 'development' ? dev : devServer;
+    : process.env.NODE_ENV === 'development'
+      ? dev        // 此处dev为 test-server.js使用，在server中手动实现热加载
+      : devServer; // 此处devServer为webpac-dev-server使用插件实现热加载

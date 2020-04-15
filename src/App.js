@@ -9,6 +9,8 @@ import Topics from './containers/Topics';
 
 import './App.css';
 
+import {themes, ThemeContext} from './context';
+
 class App extends Component {
   constructor() {
     super();
@@ -33,8 +35,10 @@ class App extends Component {
           </nav>
 
           <Route exact path="/" component={Home} />
-          <Route path="/topics" component={Topics} />
           <Route path="/about" component={About} />
+          <ThemeContext.Provider value={themes.light}>
+            <Route path="/topics" component={Topics} />
+          </ThemeContext.Provider>
         </div>
       </Router>
     );
