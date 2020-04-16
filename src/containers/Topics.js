@@ -4,6 +4,7 @@ import {Route, Link, Switch} from 'react-router-dom';
 import Hook from '../components/Hook';
 import Hoc from '../components/Hoc';
 import Ref from '../components/Ref';
+import Context from '../components/Context';
 
 import './Topics.css';
 
@@ -16,6 +17,7 @@ export default class Topics extends Component {
           <Link to="/topics/hook">Hook</Link>
           <Link to="/topics/hoc">hoc</Link>
           <Link to="/topics/ref">ref</Link>
+          <Link to="/topics/context">Context</Link>
         </div>
         <div className="topic">
           <Switch>
@@ -30,6 +32,9 @@ export default class Topics extends Component {
             </Route>
             <Route path="/topics/ref">
               <Ref />
+            </Route>
+            <Route path="/topics/context">
+              <Context />
             </Route>
           </Switch>
         </div>

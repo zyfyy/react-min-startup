@@ -7,7 +7,7 @@ export const themes = {
   },
   dark: {
     foreground: '#ffffff',
-    background: '#222222',
+    background: '#369f8f',
   },
 };
 export const ThemeContext = React.createContext(themes.light);

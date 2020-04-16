@@ -9,7 +9,7 @@ import Topics from './containers/Topics';
 
 import './App.css';
 
-import {themes, ThemeContext} from './context';
+import {themes, ThemeContext} from './theme-context';
 
 class App extends Component {
   constructor() {

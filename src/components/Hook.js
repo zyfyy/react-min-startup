@@ -9,7 +9,8 @@ import React, {
   useDebugValue,
 } from 'react';
 
-import {ThemeContext} from '../context';
+import {ThemeContext} from '../theme-context';
+
 
 // useReducer 是useState的替代方案，某些情况下，useState更方便
 const initialState = {
