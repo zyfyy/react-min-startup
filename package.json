@@ -7,7 +7,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --display-used-exports --optimize-minimize",
     "start": "NODE_ENV=development webpack -w",
-    "server": "NODE_ENV=development webpack-dev-server --host=0.0.0.0"
+    "server": "NODE_ENV=development webpack-dev-server"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

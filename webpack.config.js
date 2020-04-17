@@ -33,7 +33,6 @@ let dev = Object.assign(
       contentBase: path.join(__dirname, 'public/'),
       publicPath: '/dist/',
       port: 8080,
-      host: 'react-min-app.local',
       historyApiFallback: true,
       hot: true,
     },
