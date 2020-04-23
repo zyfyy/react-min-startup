@@ -1,9 +1,35 @@
 /* eslint-disable no-undef */
+
 const path = require('path');
 const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 
-let commonConfig = {
+const mode = process.env.NODE_ENV || 'development';
+
+let vendorConfig = {
+  name: 'vendor',
+  mode,
+  entry: {
+    react: ['./node_modules/react/index'],
+    reactredux: ['./node_modules/react-redux/es/index'],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist/dll'),
+    filename: '[name]_dll.js',
+    library: '[name]_dll',
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      name: '[name]_dll',
+      path: path.resolve(__dirname, 'dist/dll/[name].manifest.json'),
+    }),
+  ],
+};
+
+let appConfig = {
+  name: 'app',
+  mode,
+  dependencies: ['vendor'],
   entry: ['./src/index.js'],
   module: {
     rules: [
@@ -16,6 +42,18 @@ let commonConfig = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /src\/index\.(js)$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: path.resolve('scripts/cus-loader'),
+            options: {
+              cus: 'cus',
+            },
+          },
+        ],
+      },
     ],
   },
   output: {
@@ -23,53 +61,11 @@ let commonConfig = {
     publicPath: '/dist/',
     filename: 'bundle.js',
   },
+  plugins: [
+  ],
 };
 
-// hotload 使用babel的插件 react-hot-loader/babel
-let dev = Object.assign(
-  {
-    mode: 'development',
-    devServer: {
-      contentBase: path.join(__dirname, 'public/'),
-      publicPath: '/dist/',
-      port: 8080,
-      historyApiFallback: true,
-      hot: true,
-    },
-    devtool: '#source-map',
-  },
-  commonConfig,
-);
+let wpConf = [vendorConfig, appConfig];
 
-// hotload 使用webpack的Hotmodule plugin
-
-let devServer = Object.assign({}, dev, {
-  mode: 'development',
-  entry: [
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './src/index.js',
-  ],
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-  ],
-});
-
-let prod = Object.assign(
-  {
-    mode: 'production',
-    optimization: {
-      minimizer: [new TerserPlugin()],
-    },
-  },
-  commonConfig,
-);
-
-// eslint-disable-next-line no-console
-console.log('webpack:', process.env.NODE_ENV);
-module.exports =
-  process.env.NODE_ENV === 'production'
-    ? prod
-    : process.env.NODE_ENV === 'development'
-      ? dev        // 此处dev为 test-server.js使用，在server中手动实现热加载
-      : devServer; // 此处devServer为webpac-dev-server使用插件实现热加载
+module.exports = wpConf;
+module.exports.appConfig = appConfig;
