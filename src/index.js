@@ -9,6 +9,10 @@ import store from './store';
 
 // eslint-disable-next-line no-console
 console.log('browser', process.env.NODE_ENV, module);
+if (PRODUCTION) {
+  // eslint-disable-next-line no-console
+  console.log('prod', PRODUCTION);
+}
 
 ReactDOM.render(
   <Provider store={store}>

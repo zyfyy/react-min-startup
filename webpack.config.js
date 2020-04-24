@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -11,6 +11,7 @@ let vendorConfig = {
   mode,
   entry: {
     react: ['./node_modules/react/index'],
+    reactdom: ['./node_modules/react-dom/index'],
     reactredux: ['./node_modules/react-redux/es/index'],
   },
   output: {
@@ -30,7 +31,17 @@ let appConfig = {
   name: 'app',
   mode,
   dependencies: ['vendor'],
-  entry: ['./src/index.js'],
+  entry: {
+    main: './src/index.js',
+    react: [
+      'react',
+      'react-dom',
+      'redux',
+      'react-redux',
+      'react-router',
+      'redux-thunk',
+    ],
+  },
   module: {
     rules: [
       {
@@ -58,12 +69,61 @@ let appConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
-    filename: 'bundle.js',
+    // publicPath: '/dist/',
+    filename: '[name].js',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   plugins: [
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
+    // }),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(false),
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+    }),
   ],
 };
+
+if (mode === 'production') {
+  console.log('build production');
+  appConfig.plugins.push(
+    new webpack.HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20,
+    }),
+    new TerserPlugin(),
+  );
+}
 
 let wpConf = [vendorConfig, appConfig];
 
