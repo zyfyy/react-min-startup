@@ -69,7 +69,7 @@ let appConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    // publicPath: '/dist/',
+    publicPath: '/',
     filename: '[name].js',
   },
   optimization: {

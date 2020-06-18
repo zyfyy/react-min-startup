@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 
 class Ref extends React.Component {
   constructor(props) {
@@ -22,21 +22,27 @@ class Ref extends React.Component {
     // this.textInput2.current.focus();
   }
 
+  refCb(ins) {
+    console.log(ins);
+  }
+
   render() {
     // 告诉 React 我们想把 <input> ref 关联到
     // 构造器里创建的 `textInput` 上
     return (
       <div>
-        <input type="text" ref={this.textInput} />
-        <input type="text" ref={this.textInput2} />
+        <input type="text" placeholder="input1" ref={this.textInput} />
+        <input type="text" placeholder="input2" ref={this.textInput2} />
+        <input type="text" ref={this.refCb} />
+        <hr></hr>
         <input
           type="button"
-          value="Focus the text input"
+          value="Focus the text input1"
           onClick={this.focusTextInput}
         />
         <input
           type="button"
-          value="Focus the text input"
+          value="Focus the text input2"
           onClick={this.focusTextInput2}
         />
       </div>

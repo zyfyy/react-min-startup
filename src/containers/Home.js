@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {add_clog, clear_clog, warning_clear_clog} from '../actions/clog';
+import { add_clog, clear_clog, warning_clear_clog } from '../actions/clog';
 import Clog from '../components/Clog';
 
 class Home extends Component {
@@ -16,7 +16,7 @@ class Home extends Component {
   static propTypes = {
     add_clog: PropTypes.func,
     clear_clog: PropTypes.func,
-    warning_clear_clog: PropTypes.func,
+    warning_clear_clog: PropTypes.func
   };
 
   buttonOnClick() {
@@ -46,4 +46,6 @@ class Home extends Component {
     );
   }
 }
-export default connect(null, {add_clog, clear_clog, warning_clear_clog})(Home);
+export default connect(null, { add_clog, clear_clog, warning_clear_clog })(
+  Home
+);

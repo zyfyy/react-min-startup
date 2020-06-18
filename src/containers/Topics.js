@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 
 import Hook from '../components/Hook';
 import Hoc from '../components/Hoc';
 import Ref from '../components/Ref';
 import Context from '../components/Context';
+import Memo from '../components/Memo';
 
 import './Topics.css';
 
@@ -18,6 +19,7 @@ export default class Topics extends Component {
           <Link to="/topics/hoc">hoc</Link>
           <Link to="/topics/ref">ref</Link>
           <Link to="/topics/context">Context</Link>
+          <Link to="/topics/memo">Memo</Link>
         </div>
         <div className="topic">
           <Switch>
@@ -35,6 +37,9 @@ export default class Topics extends Component {
             </Route>
             <Route path="/topics/context">
               <Context />
+            </Route>
+            <Route path="/topics/memo">
+              <Memo />
             </Route>
           </Switch>
         </div>

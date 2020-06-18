@@ -38,11 +38,11 @@
         ],
         "object-curly-spacing": [
             2,
-            "never"
+            "always"
         ],
         "comma-dangle": [
             2,
-            "always-multiline"
+            "never"
         ],
         "no-trailing-spaces": 2,
         "no-console": 1,

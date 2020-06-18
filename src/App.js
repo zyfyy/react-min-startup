@@ -1,7 +1,7 @@
-import {hot} from 'react-hot-loader/root';
+import { hot } from 'react-hot-loader/root';
 
-import React, {Component, Suspense, lazy} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import React, { Component, Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Home from './containers/Home';
 import About from './containers/About';
@@ -9,7 +9,7 @@ import Topics from './containers/Topics';
 
 import './App.css';
 
-import {themes, ThemeContext} from './theme-context';
+import { themes, ThemeContext } from './theme-context';
 
 const Lazy = lazy(() => import('./components/Lazy'));
 
