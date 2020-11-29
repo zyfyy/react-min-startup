@@ -23,16 +23,10 @@ let serverAppConfig = Object.assign({}, appConfig, {
     historyApiFallback: true,
     hot: true,
   },
-  devtool: '#source-map',
 });
 
 serverAppConfig.plugins.push(
   new webpack.HotModuleReplacementPlugin(),
-  new HtmlWebpackPlugin({
-    title: 'mini react startup',
-    meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
-    template: './public/index.html',
-  }),
   new webpack.BannerPlugin({
     banner: 'no copyright!',
   }),

@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -20,6 +21,15 @@ let vendorConfig = {
     library: '[name]_dll',
   },
   plugins: [
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
+    // }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
+    // }),
     new webpack.DllPlugin({
       name: '[name]_dll',
       path: path.resolve(__dirname, 'dist/dll/[name].manifest.json'),
@@ -29,6 +39,10 @@ let vendorConfig = {
 
 let appConfig = {
   name: 'app',
+  cache: {
+    type: 'filesystem',
+    cacheDirectory: path.resolve(__dirname, '.temp_cache')
+  },
   mode,
   dependencies: ['vendor'],
   entry: {
@@ -73,38 +87,13 @@ let appConfig = {
     filename: '[name].js',
   },
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
-    },
   },
   plugins: [
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
-    // }),
+    new HtmlWebpackPlugin({
+      title: 'mini react startup',
+      meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
+      template: './public/index.html',
+    }),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false),
       TWO: '1+1',
@@ -116,7 +105,7 @@ let appConfig = {
 if (mode === 'production') {
   console.log('build production');
   appConfig.plugins.push(
-    new webpack.HashedModuleIdsPlugin({
+    new webpack.ids.HashedModuleIdsPlugin({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 20,
@@ -125,7 +114,7 @@ if (mode === 'production') {
   );
 }
 
-let wpConf = [vendorConfig, appConfig];
+let wpConf = [appConfig];
 
 module.exports = wpConf;
 module.exports.appConfig = appConfig;

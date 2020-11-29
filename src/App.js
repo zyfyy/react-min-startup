@@ -21,6 +21,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <h2>TITLE: REACT MIN START UP</h2>
         <Router>
           <div>
             <nav className="crumbs">
