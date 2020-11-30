@@ -122,7 +122,5 @@ if (mode === 'production') {
   );
 }
 
-let wpConf = [appConfig];
+module.exports = appConfig;
 
-module.exports = wpConf;
-module.exports.appConfig = appConfig;

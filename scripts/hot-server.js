@@ -1,21 +1,5 @@
-const fs = require('fs');
-
 const express = require('express');
 const app = new express();
-
-const index = fs.readFileSync('./public/index.html');
-
-app.get('/', (req, res) => {
-  res.end(index);
-});
-
-app.get('/about', (req, res) => {
-  res.end(index);
-});
-
-app.get('/topics', (req, res) => {
-  res.end(index);
-});
 
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
