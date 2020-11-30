@@ -41,7 +41,7 @@ let appConfig = {
   name: 'app',
   cache: {
     type: 'filesystem',
-    cacheDirectory: path.resolve(__dirname, '.temp_cache')
+    cacheDirectory: path.resolve(__dirname, '.temp_cache'),
   },
   mode,
   dependencies: ['vendor'],
@@ -65,7 +65,6 @@ let appConfig = {
       },
       {
         test:  /\.(ts|tsx)$/,
-        // include: /src\/**/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
@@ -92,7 +91,7 @@ let appConfig = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, '../dist/'),
     publicPath: '/',
     filename: '[name].js',
   },
@@ -101,7 +100,7 @@ let appConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'mini react startup',
-      meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
+      meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       template: './public/index.html',
     }),
     new webpack.DefinePlugin({
@@ -113,7 +112,6 @@ let appConfig = {
 };
 
 if (mode === 'production') {
-  console.log('build production');
   appConfig.plugins.push(
     new webpack.ids.HashedModuleIdsPlugin({
       hashFunction: 'sha256',

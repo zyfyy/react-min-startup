@@ -8,6 +8,9 @@
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "ignorePatterns": [
+        "dist/*.js"
+    ],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
@@ -22,7 +25,10 @@
     "rules": {
         "indent": [
             "error",
-            2, { "SwitchCase": 1 }
+            2,
+            {
+                "SwitchCase": 1
+            }
         ],
         "linebreak-style": [
             "error",
@@ -34,7 +40,10 @@
         ],
         "semi": [
             "error",
-            "always"
+            "always",
+            {
+                "omitLastInOneLineBlock": true
+            }
         ],
         "object-curly-spacing": [
             2,
@@ -42,15 +51,28 @@
         ],
         "comma-dangle": [
             2,
-            "never"
+            "always-multiline"
         ],
         "no-trailing-spaces": 2,
         "no-console": 1,
-        "no-unused-vars": 1
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error"
+        ]
     },
     "settings": {
         "react": {
             "version": "detect"
         }
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts,*.tsx"
+            ],
+            "extends": [
+                "plugin:@typescript-eslint/recommended"
+            ]
+        }
+    ]
 }

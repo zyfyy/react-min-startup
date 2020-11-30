@@ -1,5 +1,3 @@
-import { hot } from 'react-hot-loader/root';
-
 import React, { Component, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -55,4 +53,4 @@ class App extends Component {
 }
 
 // hot load
-export default hot(App);
+export default App;
