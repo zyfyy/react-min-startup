@@ -10,7 +10,7 @@ const mode = 'development';
 
 let serverAppConfig = Object.assign({}, appConfig, {
   mode,
-  entry: ['./src/index.js'],
+  entry: ['./src/index.tsx'],
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',

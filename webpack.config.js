@@ -7,35 +7,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 
-let vendorConfig = {
-  name: 'vendor',
-  mode,
-  entry: {
-    react: ['./node_modules/react/index'],
-    reactdom: ['./node_modules/react-dom/index'],
-    reactredux: ['./node_modules/react-redux/es/index'],
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist/dll'),
-    filename: '[name]_dll.js',
-    library: '[name]_dll',
-  },
-  plugins: [
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
-    // }),
-    // new webpack.DllReferencePlugin({
-    //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
-    // }),
-    new webpack.DllPlugin({
-      name: '[name]_dll',
-      path: path.resolve(__dirname, 'dist/dll/[name].manifest.json'),
-    }),
-  ],
-};
+// let vendorConfig = {
+//   name: 'vendor',
+//   mode,
+//   entry: {
+//     react: ['./node_modules/react/index'],
+//     reactdom: ['./node_modules/react-dom/index'],
+//     reactredux: ['./node_modules/react-redux/es/index'],
+//   },
+//   output: {
+//     path: path.resolve(__dirname, 'dist/dll'),
+//     filename: '[name]_dll.js',
+//     library: '[name]_dll',
+//   },
+//   plugins: [
+//     // new webpack.DllReferencePlugin({
+//     //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
+//     // }),
+//     // new webpack.DllReferencePlugin({
+//     //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
+//     // }),
+//     // new webpack.DllReferencePlugin({
+//     //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
+//     // }),
+//     new webpack.DllPlugin({
+//       name: '[name]_dll',
+//       path: path.resolve(__dirname, 'dist/dll/[name].manifest.json'),
+//     }),
+//   ],
+// };
 
 let appConfig = {
   name: 'app',
@@ -46,7 +46,7 @@ let appConfig = {
   mode,
   dependencies: ['vendor'],
   entry: {
-    main: './src/index.js',
+    main: './src/index.tsx',
     react: [
       'react',
       'react-dom',
@@ -64,11 +64,21 @@ let appConfig = {
         use: 'babel-loader',
       },
       {
+        test:  /\.(ts|tsx)$/,
+        // include: /src\/**/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /src\/index\.(js)$/,
+        test: /src\/index\.(tsx)$/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
