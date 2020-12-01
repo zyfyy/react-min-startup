@@ -103,7 +103,7 @@ if (mode === 'production') {
 } else {
   appConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({overlay: false, forceEnable: true}),
     new webpack.BannerPlugin({
       banner: 'no copyright!',
     }),
