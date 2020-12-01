@@ -28,6 +28,7 @@ export default class Topics extends Component {
             </Route>
             <Route path="/topics/hook">
               <Hook />
+              Hooks
             </Route>
             <Route path="/topics/hoc">
               <Hoc />

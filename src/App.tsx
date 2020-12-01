@@ -12,9 +12,6 @@ import { themes, ThemeContext } from './theme-context';
 const Lazy = lazy(() => import('./components/Lazy'));
 
 class App extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     return (
@@ -52,5 +49,4 @@ class App extends Component {
   }
 }
 
-// hot load
 export default App;

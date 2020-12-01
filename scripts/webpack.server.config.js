@@ -1,18 +1,7 @@
-/* eslint-disable no-undef */
+const { merge } = require('webpack-merge');
+const appConfig = require('./webpack.config');
 
-const webpack = require('webpack');
-const appConfig = require('./webpack.config').appConfig;
-
-const mode = 'development';
-
-let serverAppConfig = Object.assign({}, appConfig, {
-  mode,
-  entry: ['./src/index.tsx'],
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+let serverAppConfig = merge(appConfig, {
   devServer: {
     contentBase: __dirname,
     // publicPath: '/dist',
@@ -21,12 +10,5 @@ let serverAppConfig = Object.assign({}, appConfig, {
     hot: true,
   },
 });
-
-serverAppConfig.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.BannerPlugin({
-    banner: 'no copyright!',
-  }),
-);
 
 module.exports = serverAppConfig;

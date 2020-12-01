@@ -4,38 +4,10 @@ const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
-
-// let vendorConfig = {
-//   name: 'vendor',
-//   mode,
-//   entry: {
-//     react: ['./node_modules/react/index'],
-//     reactdom: ['./node_modules/react-dom/index'],
-//     reactredux: ['./node_modules/react-redux/es/index'],
-//   },
-//   output: {
-//     path: path.resolve(__dirname, 'dist/dll'),
-//     filename: '[name]_dll.js',
-//     library: '[name]_dll',
-//   },
-//   plugins: [
-//     // new webpack.DllReferencePlugin({
-//     //   manifest: path.resolve(__dirname, 'dist/dll/react.manifest.json'),
-//     // }),
-//     // new webpack.DllReferencePlugin({
-//     //   manifest: path.resolve(__dirname, 'dist/dll/reactdom.manifest.json'),
-//     // }),
-//     // new webpack.DllReferencePlugin({
-//     //   manifest: path.resolve(__dirname, 'dist/dll/reactredux.manifest.json'),
-//     // }),
-//     new webpack.DllPlugin({
-//       name: '[name]_dll',
-//       path: path.resolve(__dirname, 'dist/dll/[name].manifest.json'),
-//     }),
-//   ],
-// };
+const isDevelopment = mode === 'development';
 
 let appConfig = {
   name: 'app',
@@ -44,31 +16,36 @@ let appConfig = {
     cacheDirectory: path.resolve(__dirname, '.temp_cache'),
   },
   mode,
-  dependencies: ['vendor'],
-  entry: {
-    main: './src/index.tsx',
-    react: [
-      'react',
-      'react-dom',
-      'redux',
-      'react-redux',
-      'react-router',
-      'redux-thunk',
-    ],
-  },
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
         exclude: /(node_modules|bower_components)/,
         use: 'babel-loader',
       },
       {
-        test:  /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: [
           {
-            loader: require.resolve('ts-loader'),
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/env',
+                  {
+                    modules: false,
+                  },
+                ],
+                '@babel/preset-react',
+                '@babel/preset-typescript',
+              ],
+              plugins: [
+                '@babel/plugin-proposal-class-properties',
+                isDevelopment && require.resolve('react-refresh/babel'),
+              ].filter(Boolean),
+            },
           },
         ],
       },
@@ -97,6 +74,9 @@ let appConfig = {
   },
   optimization: {
   },
+  resolve: {
+    extensions: ['.js', '.tsx', '.ts'],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'mini react startup',
@@ -106,7 +86,7 @@ let appConfig = {
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(false),
       TWO: '1+1',
-      'typeof window': JSON.stringify('object'),
+      THREE: JSON.stringify('object'),
     }),
   ],
 };
@@ -119,6 +99,14 @@ if (mode === 'production') {
       hashDigestLength: 20,
     }),
     new TerserPlugin(),
+  );
+} else {
+  appConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
+    new webpack.BannerPlugin({
+      banner: 'no copyright!',
+    }),
   );
 }
 

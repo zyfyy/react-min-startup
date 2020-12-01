@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useRef,
   useLayoutEffect,
-  useDebugValue
+  useDebugValue,
 } from 'react';
 
 import PropTypes from 'prop-types';
@@ -16,18 +16,18 @@ import { ThemeContext } from '../theme-context';
 
 // useReducer 是useState的替代方案，某些情况下，useState更方便
 const initialState = {
-  count: 0
+  count: 0,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'increment':
       return {
-        count: state.count + 1
+        count: state.count + 1,
       };
     case 'decrement':
       return {
-        count: state.count - 1
+        count: state.count - 1,
       };
     default:
       throw new Error();
@@ -54,7 +54,7 @@ const Hr = props => {
 
 Hr.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 // child counter
@@ -67,7 +67,7 @@ const Counter = ({ dispatch }) => {
   );
 };
 Counter.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const Hook = () => {
@@ -135,7 +135,7 @@ const Hook = () => {
           className="context"
           style={{
             background: theme.background,
-            color: theme.foreground
+            color: theme.foreground,
           }}
         >
           theme color
