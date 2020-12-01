@@ -1,6 +1,7 @@
+import { Dispatch } from 'redux';
 import {ADD_LOG, CLEAR_LOG} from '../actionTypes';
 
-export function add_clog(text) {
+export function add_clog(text: String) {
   return {
     type: ADD_LOG,
     text,

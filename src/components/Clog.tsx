@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import './Clog.css';
+type propTypes = {
+  logList: Array<String>,
+};
 
-class Clog extends Component {
-  static propTypes = {
-    logList: PropTypes.array,
-  };
-
+class Clog extends Component<propTypes> {
+  constructor(props: propTypes) {
+    super(props);
+  }
   render() {
     return (
       <div className="clog">

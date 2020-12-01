@@ -5,9 +5,15 @@ import PropTypes from 'prop-types';
 import { add_clog, clear_clog, warning_clear_clog } from '../actions/clog';
 import Clog from '../components/Clog';
 
-class Home extends Component {
-  constructor() {
-    super();
+type HomeProps = {
+  add_clog: Function,
+  clear_clog: Function,
+  warning_clear_clog: Function,
+}
+
+class Home extends Component<HomeProps> {
+  constructor(props: HomeProps) {
+    super(props);
     this.buttonOnClick = this.buttonOnClick.bind(this);
     this.clearButtonOnClick = this.clearButtonOnClick.bind(this);
     this.niceClearButtonOnClick = this.niceClearButtonOnClick.bind(this);
@@ -46,6 +52,4 @@ class Home extends Component {
     );
   }
 }
-export default connect(null, { add_clog, clear_clog, warning_clear_clog })(
-  Home
-);
+export default connect(null, { add_clog, clear_clog, warning_clear_clog })(Home);
