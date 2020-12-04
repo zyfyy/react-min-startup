@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component, ComponentType } from 'react';
 
-function logProps(WrappedComponent: Component<{}, {}>): Component<{}, {}> {
+const withDidUpdateLog = <P extends object>(Component: ComponentType<P>) => {
   class logProps extends React.Component {
     componentDidUpdate(prevProps: {}) {
       console.log('Current props: ', this.props);
@@ -9,10 +9,11 @@ function logProps(WrappedComponent: Component<{}, {}>): Component<{}, {}> {
 
     render() {
       // 将 input 组件包装在容器中，而不对其进行修改。Good!
+      const { ...props } = this.props;
       return (
         <div>
-          hoc ability
-          <WrappedComponent {...this.props} />
+          hoc ability withDidUpdateLog
+          <Component {...props as P} />
         </div>
       );
     }
@@ -27,4 +28,4 @@ class HOC extends Component {
   }
 }
 
-export default logProps(HOC);
+export default withDidUpdateLog(HOC);
