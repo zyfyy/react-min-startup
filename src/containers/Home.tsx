@@ -46,7 +46,7 @@ class Home extends Component<HomeProps> {
           <button onClick={this.buttonOnClick}>click to clog</button>
           <button onClick={this.clearButtonOnClick}>click to clear</button>
           <button onClick={this.niceClearButtonOnClick}>nice to clear</button>
-          <Clog ls="ls"></Clog>
+          <Clog></Clog>
         </div>
       </div>
     );

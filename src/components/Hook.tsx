@@ -8,18 +8,28 @@ import React, {
   useRef,
   useLayoutEffect,
   useDebugValue,
+  Dispatch,
+  FC,
+  ReactNode
 } from 'react';
 
-import PropTypes from 'prop-types';
+
 
 import { ThemeContext } from '../theme-context';
 
 // useReducer 是useState的替代方案，某些情况下，useState更方便
+type ReducerState = {
+  count: number
+}
+type ReducerAction = {
+  type: 'increment' | 'decrement'
+}
+
 const initialState = {
   count: 0,
 };
 
-function reducer(state, action) {
+function reducer(state: ReducerState, action: ReducerAction) {
   switch (action.type) {
     case 'increment':
       return {
@@ -41,8 +51,11 @@ function useTestDebug() {
   useDebugValue(isDebug ? 'dddebugggg-string' : 'oooommmgg');
   return isDebug;
 }
-
-const Hr = props => {
+type HrProps = {
+  title: String,
+  children: ReactNode
+}
+const Hr: FC<HrProps> = (props) => {
   return (
     <div>
       <h5 style={{ margin: 0, color: 'blue' }}>{props.title}:</h5>
@@ -52,22 +65,15 @@ const Hr = props => {
   );
 };
 
-Hr.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.func.isRequired,
-};
 
 // child counter
-const Counter = ({ dispatch }) => {
+const Counter = ({ dispatch } : {dispatch: Dispatch<ReducerAction>}) => {
   return (
     <>
       <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
       <button onClick={() => dispatch({ type: 'increment' })}>+</button>
     </>
   );
-};
-Counter.propTypes = {
-  dispatch: PropTypes.func.isRequired,
 };
 
 const Hook = () => {
@@ -103,9 +109,9 @@ const Hook = () => {
   }, [count3]);
 
   // useRef
-  const inputEl = useRef(null);
+  const inputEl = useRef<HTMLInputElement>(null);
   const refOnClick = () => {
-    inputEl.current.focus();
+    inputEl?.current?.focus();
   };
 
   // usecallback with ref

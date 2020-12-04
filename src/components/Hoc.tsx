@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-function logProps(WrappedComponent) {
+function logProps(WrappedComponent: Component<{}, {}>): Component<{}, {}> {
   class logProps extends React.Component {
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: {}) {
       console.log('Current props: ', this.props);
       console.log('Previous props: ', prevProps);
     }

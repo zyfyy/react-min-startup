@@ -15,7 +15,7 @@ export function clear_clog() {
 }
 
 export function warning_clear_clog() {
-  return (dispatch) => {
+  return (dispatch: Dispatch) => {
     dispatch(add_clog('warning: logs will be cleard soon'));
     setTimeout(() => dispatch(clear_clog()), 2000);
   };

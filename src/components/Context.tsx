@@ -18,8 +18,14 @@ function ThemeToggleButton() {
     </ThemeContext.Consumer>
   );
 }
-class Context extends React.Component {
-  constructor(props) {
+type ContextState = {
+  theme: {
+    background: string;
+    foreground: string;
+  };
+}
+class Context extends React.Component<{}, ContextState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       theme: themes.light,

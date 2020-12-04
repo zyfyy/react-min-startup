@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {Component, RefObject, useRef} from 'react';
 
-class Ref extends React.Component {
-  constructor(props) {
-    super(props);
+class Ref extends Component{
+  textInput: RefObject<HTMLInputElement>;
+
+
+  constructor(prop: {}) {
+    super(prop);
     // 创建一个 ref 来存储 textInput 的 DOM 元素
-    this.textInput = React.createRef();
+    this.textInput = React.createRef<HTMLInputElement>();
     // this.textInput2 = useRef(null);
     this.focusTextInput = this.focusTextInput.bind(this);
   }
+  
 
   focusTextInput() {
     // 直接使用原生 API 使 text 输入框获得焦点
     // 注意：我们通过 "current" 来访问 DOM 节点
-    this.textInput.current.focus();
+    this.textInput?.current?.focus();
   }
 
   focusTextInput2() {
@@ -22,7 +26,7 @@ class Ref extends React.Component {
     // this.textInput2.current.focus();
   }
 
-  refCb(ins) {
+  refCb(ins: HTMLInputElement) {
     console.log(ins);
   }
 
@@ -32,7 +36,7 @@ class Ref extends React.Component {
     return (
       <div>
         <input type="text" placeholder="input1" ref={this.textInput} />
-        <input type="text" placeholder="input2" ref={this.textInput2} />
+
         <input type="text" ref={this.refCb} />
         <hr></hr>
         <input

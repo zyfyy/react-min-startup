@@ -7,7 +7,6 @@ import React, {
   memo
 } from 'react';
 
-import PropTypes from 'prop-types';
 
 const Child = () => {
   console.log('子组件?');
@@ -44,7 +43,7 @@ const Page2 = () => {
 
 
 //子组件会有不必要渲染的例子
-const Child2 = ({ name, onClick }) => {
+const Child2 = ({ name, onClick }: {name: string, onClick: Function}) => {
   console.log('子组件?');
   return (
     <>
@@ -63,7 +62,7 @@ const Page3 = () => {
     <>
       <button onClick={() => { setCount(count + 1) }}>加1</button>
       <p>count:{count}</p>
-      <ChildMemo2 name={name} onClick={newName => setName(newName)} />
+      <ChildMemo2 name={name} onClick={(newName: string) => setName(newName)} />
     </>
   );
 };
@@ -84,7 +83,7 @@ const Page4 = () => {
 };
 
 
-const Child3 = ({ name, onClick }) => {
+const Child3 = ({ name, onClick }: {name: {name: string, color: 'red' | 'green'}, onClick: Function}) => {
   console.log('子组件?');
   return(
     <>
