@@ -2,4 +2,7 @@ import {combineReducers} from 'redux';
 
 import clog from './clog';
 
-export default combineReducers({clog});
+const rootReducer = combineReducers({clog});
+
+export default rootReducer;
+export type RootState = ReturnType<typeof rootReducer>

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import { StateFromReducersMapObject } from 'redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { RootState } from '../reducers';
 
 import './Clog.css';
 type propTypes = {
@@ -22,9 +22,9 @@ class Clog extends Component<propTypes> {
   }
 }
 
-function mapStateToProps(state) {
-  const {logs} = state.clog;
-  return {logList: logs};
+const mapStateToProps = (state: RootState) => {
+  const { logs } = state.clog;
+  return { logList: logs };
 }
 
 export default connect(mapStateToProps)(Clog);

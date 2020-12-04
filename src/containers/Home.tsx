@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { add_clog, clear_clog, warning_clear_clog } from '../actions/clog';
 import Clog from '../components/Clog';
 
-type HomeProps = {
-  add_clog: Function,
-  clear_clog: Function,
-  warning_clear_clog: Function,
-}
+const mapDispatchToProps = { add_clog, clear_clog, warning_clear_clog };
+const connector = connect(null, mapDispatchToProps)
 
-class Home extends Component<HomeProps> {
-  constructor(props: HomeProps) {
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+
+class Home extends Component<PropsFromRedux> {
+  constructor(props: PropsFromRedux) {
     super(props);
     this.buttonOnClick = this.buttonOnClick.bind(this);
     this.clearButtonOnClick = this.clearButtonOnClick.bind(this);
@@ -52,4 +52,4 @@ class Home extends Component<HomeProps> {
     );
   }
 }
-export default connect(null, { add_clog, clear_clog, warning_clear_clog })(Home);
+export default (Home);
