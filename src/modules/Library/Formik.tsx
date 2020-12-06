@@ -10,7 +10,7 @@ interface Values {
 
 const Basic = () => (
   <div>
-    <h1>Signup</h1>
+    <h3>Signup</h3>
     <Formik
       initialValues={{
         firstName: '',

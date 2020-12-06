@@ -58,7 +58,7 @@ let appConfig = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true, // enable css module
+              modules: { auto: true }, // enable css module
             },
           },
           {

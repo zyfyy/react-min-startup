@@ -1,6 +1,6 @@
 import React, { ReactNode, FC } from 'react'
 import { Link } from 'react-router-dom';
-import styles from './Nav.less';
+import styles from './Nav.module.less';
 
 
 export interface NavRouteType {

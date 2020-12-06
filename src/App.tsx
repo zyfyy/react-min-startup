@@ -10,6 +10,8 @@ import Topics from './modules/Topics';
 import Library from './modules/Library';
 
 
+import './App.css';
+
 const routes: NavRouteType[] = [
   {
     path: '/',
@@ -34,23 +36,12 @@ const routes: NavRouteType[] = [
   }
 ]
 
-interface ContainerProps {
-  content: ReactNode
-}
-function Container({content}: ContainerProps): JSX.Element {
-  return (
-    <>
-      {content}
-    </>
-  )
-}
-
 
 class App extends Component {
 
   render() {
     return (
-      <>
+      <div className="app">
         <h2>REACT MIN START UP</h2>
         <Nav routes={routes}></Nav>
         {
@@ -66,7 +57,7 @@ class App extends Component {
           ))
         }
         <Footer />
-      </>
+      </div>
     );
   }
 }

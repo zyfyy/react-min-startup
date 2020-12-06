@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
 
-import styles from './Clog.css';
+import styles from './Clog.module.css';
 
 type propTypes = {
   logList: Array<String>,

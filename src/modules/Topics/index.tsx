@@ -7,7 +7,7 @@ import Ref from './Ref';
 import Context from './Context';
 import Memo from './Memo';
 
-import styles from './Topics.css';
+import styles from './Topics.module.css';
 
 export default class Topics extends Component {
   render() {
