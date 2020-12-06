@@ -1,15 +1,15 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import Home from './containers/Home';
-import About from './containers/About';
-import Topics from './containers/Topics';
+import Home from './modules/Home';
+import About from './modules/About';
+import Topics from './modules/Topics';
 
 import './App.css';
 
 import { themes, ThemeContext } from './theme-context';
 
-const Lazy = lazy(() => import('./components/Lazy'));
+const Lazy = lazy(() => import('./modules/Lazy'));
 
 class App extends Component {
 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import PropTypes from 'prop-types';
 
-import { add_clog, clear_clog, warning_clear_clog } from '../actions/clog';
-import Clog from '../components/Clog';
+import { add_clog, clear_clog, warning_clear_clog } from '../../actions/clog';
+import Clog from './Clog';
 
 const mapDispatchToProps = { add_clog, clear_clog, warning_clear_clog };
 const connector = connect(null, mapDispatchToProps)
@@ -18,12 +17,6 @@ class Home extends Component<PropsFromRedux> {
     this.clearButtonOnClick = this.clearButtonOnClick.bind(this);
     this.niceClearButtonOnClick = this.niceClearButtonOnClick.bind(this);
   }
-
-  static propTypes = {
-    add_clog: PropTypes.func,
-    clear_clog: PropTypes.func,
-    warning_clear_clog: PropTypes.func
-  };
 
   buttonOnClick() {
     this.props.add_clog('log 123');
@@ -52,4 +45,4 @@ class Home extends Component<PropsFromRedux> {
     );
   }
 }
-export default (Home);
+export default connector(Home);

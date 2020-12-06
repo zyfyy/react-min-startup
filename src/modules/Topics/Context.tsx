@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { ThemeContext, themes, ContextState } from '../theme-context';
-import ThemeButton from './ThemeButton';
+import { ThemeContext, themes, ContextState } from '../../theme-context';
+import ThemeParagraph from '../../components/ThemeParagraph';
 
 interface ThemeToggleButtonProps {
   toggleTheme: MouseEventHandler
@@ -26,9 +26,9 @@ const ThemeToggleButton : FC<ThemeToggleButtonProps> = (props) => {
 
 const ChildContext = () => {
   return (
-    <ThemeButton>
+    <ThemeParagraph>
       child context
-    </ThemeButton>
+    </ThemeParagraph>
   )
 };
 
@@ -51,12 +51,12 @@ class Context extends React.Component<{}, ContextState> {
       <div className="context">
         <ThemeContext.Provider value={this.state.theme}>
           <button onClick={this.toggleTheme}>toggle</button>
-          <ThemeButton>我会变</ThemeButton>
+          <ThemeParagraph>我会变</ThemeParagraph>
           <ChildContext></ChildContext>
         </ThemeContext.Provider>
         {/* 没有Provider内，使用默认的值 */}
         <section>
-          <ThemeButton>我不会-变</ThemeButton>
+          <ThemeParagraph>我不会-变</ThemeParagraph>
         </section>
 
         <ThemeContext.Provider value={this.state.theme}>
