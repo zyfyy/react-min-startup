@@ -1,27 +1,29 @@
 import React from 'react'
-import { Switch, Link, Route } from 'react-router-dom';
+import SubPage from '../../components/SubPage';
+
 import Formik from './Formik'
-
 import { AntdC } from './Antd';
-
+import Reselect from './Reselect';
 
 const index = () => {
   return (
-    <div>
-      <h2>Library</h2>
-      <div>
-        <Link to="/library/formik">Formik</Link>
-        <Link to="/library/antd">Antd</Link>
-      </div>
-      <Switch>
-        <Route path="/library/formik">
-          <Formik />
-        </Route>
-        <Route path="/library/antd">
-          <AntdC />
-        </Route>
-      </Switch>
-    </div>
+    <SubPage title="Library" routes={[
+      {
+        path: '/library/formik',
+        title: 'Formik',
+        component: (<Formik />)
+      },
+      {
+        path: '/library/antd',
+        title: 'Antd',
+        component: (<AntdC />)
+      },
+      {
+        path: '/library/reselect',
+        title: 'Reselect',
+        component: (<Reselect />)
+      },
+    ]} />
   )
 }
 

@@ -11,13 +11,15 @@ export interface SubPageRouteType {
 }
 
 interface SubPageRouteProps {
+  title: string,
   routes: SubPageRouteType[]
 }
 
 const SubPage = (props: SubPageRouteProps) => {
-  const { routes } = props;
+  const { routes, title } = props;
   return (
     <div>
+      <h2>{title}</h2>
       <div className={styles['topicslink']}>
         {
           routes.map((route, idx) => (
