@@ -2,6 +2,6 @@ import React, { Component } from 'react';
 
 export default class Lazy extends Component {
   render() {
-    return <div>Lazy load component</div>;
+    return <div>Lazy loaded Footer component</div>;
   }
 }

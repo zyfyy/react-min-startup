@@ -1,15 +1,32 @@
-import React, { Component, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React, { Component, FunctionComponent, ReactComponentElement, ReactElement } from 'react';
+import { Route } from 'react-router-dom';
+
+import Nav, {NavRouteType} from './components/Layouts/Nav';
+import Footer from './components/Layouts/Footer';
 
 import Home from './modules/Home';
 import About from './modules/About';
 import Topics from './modules/Topics';
 
-import './App.css';
 
-import { themes, ThemeContext } from './theme-context';
+const routes: NavRouteType[] = [
+  {
+    path: '/',
+    text: 'Home',
+    component: Home,
+  },
+  {
+    path: '/about',
+    text: 'About',
+    component: About
+  },
+  {
+    path: '/topics',
+    text: 'Topics',
+    component: Topics
+  }
+]
 
-const Lazy = lazy(() => import('./modules/Lazy'));
 
 class App extends Component {
 
@@ -17,33 +34,13 @@ class App extends Component {
     return (
       <>
         <h2>TITLE: REACT MIN START UP</h2>
-        <Router>
-          <div>
-            <nav className="crumbs">
-              <ol>
-                <li className="crumb">
-                  <Link to="/">Home</Link>
-                </li>
-                <li className="crumb">
-                  <Link to="/about">About</Link>
-                </li>
-                <li className="crumb">
-                  <Link to="/topics">Topics</Link>
-                </li>
-              </ol>
-            </nav>
+        <Nav routes={routes}></Nav>
 
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <ThemeContext.Provider value={themes.light}>
-              <Route path="/topics" component={Topics} />
-            </ThemeContext.Provider>
-          </div>
-        </Router>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/topics" component={Topics} />
 
-        <Suspense fallback={<h1>Still Loading…</h1>}>
-          <Lazy />
-        </Suspense>
+        <Footer />
       </>
     );
   }

@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const postcssPresetEnv = require('postcss-preset-env');
 
 const mode = process.env.NODE_ENV || 'development';
 const isDevelopment = mode === 'development';
@@ -50,8 +51,30 @@ let appConfig = {
         ],
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.((c|le)ss)$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true, // enable css module
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  postcssPresetEnv({ stage: 0 }),
+                ],
+              },
+            },
+          },
+          {
+            loader: 'less-loader',
+          },
+        ],
       },
       {
         test: /src\/index\.(tsx)$/,
@@ -72,15 +95,16 @@ let appConfig = {
     publicPath: '/',
     filename: '[name].js',
   },
-  optimization: {
-  },
+  optimization: {},
   resolve: {
     extensions: ['.js', '.tsx', '.ts'],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'mini react startup',
-      meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+      },
       template: './public/index.html',
     }),
     new webpack.DefinePlugin({
@@ -103,7 +127,7 @@ if (mode === 'production') {
 } else {
   appConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin({overlay: false, forceEnable: true}),
+    new ReactRefreshWebpackPlugin({ overlay: false, forceEnable: true }),
     new webpack.BannerPlugin({
       banner: 'no copyright!',
     }),
@@ -111,4 +135,3 @@ if (mode === 'production') {
 }
 
 module.exports = appConfig;
-
