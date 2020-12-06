@@ -1,0 +1,8 @@
+.topicslink a {
+    margin: 0 20px;
+}
+.topic {
+    margin: 20px 0;
+    background: #eee;
+    min-height: 120px;
+}
