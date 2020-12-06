@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers';
 
-import './Clog.css';
+import styles from './Clog.css';
+
 type propTypes = {
   logList: Array<String>,
 };
@@ -13,7 +14,7 @@ class Clog extends Component<propTypes> {
   }
   render() {
     return (
-      <div className="clog">
+      <div className={styles.clog}>
         {this.props.logList.map((ele, idx) => {
           return <span key={idx}>{ele}</span>;
         })}

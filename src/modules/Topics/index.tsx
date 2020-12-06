@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
-import Hook from './Topics/Hook';
-import Hoc from './Topics/Hoc';
-import Ref from './Topics/Ref';
-import Context from './Topics/Context';
-import Memo from './Topics/Memo';
+import Hook from './Hook';
+import Hoc from './Hoc';
+import Ref from './Ref';
+import Context from './Context';
+import Memo from './Memo';
 
 import './Topics.css';
 

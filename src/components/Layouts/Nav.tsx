@@ -1,4 +1,4 @@
-import React, { Component, FC } from 'react'
+import React, { ReactNode, FC } from 'react'
 import { Link } from 'react-router-dom';
 import styles from './Nav.less';
 
@@ -6,7 +6,8 @@ import styles from './Nav.less';
 export interface NavRouteType {
   path: string,
   text: string,
-  component: Component
+  exact?: boolean,
+  component: ReactNode
 }
 
 interface NavRouteProps {
@@ -14,7 +15,7 @@ interface NavRouteProps {
 }
 
 const Nav: FC<NavRouteProps> = ({ routes }) => {
-  console.log(styles);
+  // console.log(styles);
   return (
     <nav className={styles.nav}>
       <ol className={styles.crumbs}>
