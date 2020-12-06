@@ -137,15 +137,17 @@ const Hook = () => {
       </Hr>
 
       <Hr title="context">
-        <div
-          className="context"
-          style={{
-            background: theme.background,
-            color: theme.foreground,
-          }}
-        >
-          theme color
-        </div>
+        <ThemeContext.Provider value={theme}>
+          <div
+            className="context"
+            style={{
+              background: theme.background,
+              color: theme.foreground,
+            }}
+          >
+            theme color
+          </div>
+        </ThemeContext.Provider>
       </Hr>
 
       <Hr title="reducer">

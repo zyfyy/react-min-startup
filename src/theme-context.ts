@@ -1,9 +1,15 @@
 import React from 'react';
 
+export type ContextState = {
+  theme: {
+    background: string;
+    foreground: string;
+  };
+}
 export const themes = {
   light: {
-    foreground: '#666',
-    background: '#eeeeee'
+    foreground: '#fff',
+    background: '#66aaff'
   },
   dark: {
     foreground: '#ffffff',
@@ -11,3 +17,4 @@ export const themes = {
   }
 };
 export const ThemeContext = React.createContext(themes.light);
+ThemeContext.displayName = 'ThemeContext';

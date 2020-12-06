@@ -1,15 +1,20 @@
-import React from 'react';
-import {ThemeContext, themes} from '../theme-context';
+import React, { FC, MouseEventHandler } from 'react';
+import { ThemeContext, themes, ContextState } from '../theme-context';
 import ThemeButton from './ThemeButton';
 
-function ThemeToggleButton() {
+interface ThemeToggleButtonProps {
+  toggleTheme: MouseEventHandler
+}
+
+const ThemeToggleButton : FC<ThemeToggleButtonProps> = (props) => {
+  const {toggleTheme} = props;
   return (
     <ThemeContext.Consumer>
-      {({theme, toggleTheme}) => {
+      {theme => {
         return (
           <button
             onClick={toggleTheme}
-            style={{backgroundColor: theme.background}}
+            style={{ backgroundColor: theme.background }}
           >
             Toggle Theme
           </button>
@@ -18,12 +23,15 @@ function ThemeToggleButton() {
     </ThemeContext.Consumer>
   );
 }
-type ContextState = {
-  theme: {
-    background: string;
-    foreground: string;
-  };
-}
+
+const ChildContext = () => {
+  return (
+    <ThemeButton>
+      child context
+    </ThemeButton>
+  )
+};
+
 class Context extends React.Component<{}, ContextState> {
   constructor(props: {}) {
     super(props);
@@ -39,27 +47,21 @@ class Context extends React.Component<{}, ContextState> {
     }));
   };
   render() {
-    const toggleTheme = this.toggleTheme;
     return (
       <div className="context">
         <ThemeContext.Provider value={this.state.theme}>
           <button onClick={this.toggleTheme}>toggle</button>
           <ThemeButton>我会变</ThemeButton>
+          <ChildContext></ChildContext>
         </ThemeContext.Provider>
-
-        {/*尽量不这么写，防止重新渲染*/}
-        <ThemeContext.Provider value={{toggleTheme, ...this.state}}>
-          <ThemeToggleButton></ThemeToggleButton>
-        </ThemeContext.Provider>
-
-        {/*尽量这么写，防止重新渲染*/}
-        <ThemeContext.Provider value={this.state}>
-          <ThemeToggleButton></ThemeToggleButton>
-        </ThemeContext.Provider>
-
+        {/* 没有Provider内，使用默认的值 */}
         <section>
-          <ThemeButton>我不会变</ThemeButton>
+          <ThemeButton>我不会-变</ThemeButton>
         </section>
+
+        <ThemeContext.Provider value={this.state.theme}>
+          <ThemeToggleButton toggleTheme={this.toggleTheme}/>
+        </ThemeContext.Provider>
       </div>
     );
   }
