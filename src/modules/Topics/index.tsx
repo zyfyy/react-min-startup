@@ -7,14 +7,14 @@ import Ref from './Ref';
 import Context from './Context';
 import Memo from './Memo';
 
-import './Topics.css';
+import styles from './Topics.css';
 
 export default class Topics extends Component {
   render() {
     return (
       <div>
         <h2>Topics</h2>
-        <div className="topics-link">
+        <div className={styles['topicslink']}>
           <Link to="/topics/hook">Hook</Link>
           <Link to="/topics/hoc">hoc</Link>
           <Link to="/topics/ref">ref</Link>
