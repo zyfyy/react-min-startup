@@ -95,7 +95,20 @@ let appConfig = {
     publicPath: '/',
     filename: '[name].js',
   },
-  optimization: {},
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: 100,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          name: 'vendor',
+          test: /([/\\]node_modules[/\\]|[/\\]dev[/\\]vendor[/\\])/,
+          chunks: 'all',
+        },
+      },
+    },
+  },
   resolve: {
     extensions: ['.js', '.tsx', '.ts'],
     alias: {
@@ -130,7 +143,9 @@ if (mode === 'production') {
   );
 } else {
   appConfig.plugins.push(
-    new webpack.SourceMapDevToolPlugin({}),
+    new webpack.SourceMapDevToolPlugin({
+      exclude: ['vendor.js'],
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin({ overlay: false, forceEnable: true }),
     new webpack.BannerPlugin({
