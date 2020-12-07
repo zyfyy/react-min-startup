@@ -98,8 +98,8 @@ let appConfig = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      maxInitialRequests: 100,
-      minSize: 0,
+      maxSize: 1024 * 1024,
+      minSize: 1024 * 24,
       cacheGroups: {
         vendor: {
           name: 'vendor',
@@ -144,7 +144,7 @@ if (mode === 'production') {
 } else {
   appConfig.plugins.push(
     new webpack.SourceMapDevToolPlugin({
-      exclude: ['vendor.js'],
+      exclude: ['vendor*.js'],
     }),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin({ overlay: false, forceEnable: true }),

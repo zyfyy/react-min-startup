@@ -1,12 +1,33 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
+import { RootState } from '@/reducers';
+import { increase } from '@/actions/saga';
 
-const Saga = () => {
+
+const mapDispatchToProps = { increase };
+const mapStateToProps = (state: RootState) => {
+  const { saga } = state;
+  return saga;
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type SagaPropsTypes = ConnectedProps<typeof connector>
+
+
+const Saga = (props: SagaPropsTypes) => {
   return (
     <div>
-      hello
+      <button
+        onClick={props.increase}
+      >click to increase async use saga with saga</button>
+
+      <pre>
+        <br />
+        {props.count}
+      </pre>
     </div>
   )
 }
 
-export default Saga
+export default connector(Saga);
