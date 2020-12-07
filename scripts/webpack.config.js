@@ -98,7 +98,11 @@ let appConfig = {
   optimization: {},
   resolve: {
     extensions: ['.js', '.tsx', '.ts'],
+    alias: {
+      '@': path.join(process.cwd(), 'src'),
+    },
   },
+  devtool: false,
   plugins: [
     new HtmlWebpackPlugin({
       title: 'mini react startup',
@@ -126,6 +130,7 @@ if (mode === 'production') {
   );
 } else {
   appConfig.plugins.push(
+    new webpack.SourceMapDevToolPlugin({}),
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin({ overlay: false, forceEnable: true }),
     new webpack.BannerPlugin({

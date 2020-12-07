@@ -1,4 +1,4 @@
-import {ADD_LOG, CLEAR_LOG} from '../actionTypes';
+import {ADD_LOG, CLEAR_LOG} from '../constants/actionTypes';
 import {ClogActionTypes} from '../actions/clog';
 
 export type Log = string;

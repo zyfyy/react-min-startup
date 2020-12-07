@@ -4,6 +4,7 @@ import SubPage from '../../components/SubPage';
 import Formik from './Formik'
 import { AntdC } from './Antd';
 import Reselect from './Reselect';
+import Saga from './Saga';
 
 const index = () => {
   return (
@@ -22,6 +23,11 @@ const index = () => {
         path: '/library/reselect',
         title: 'Reselect',
         component: (<Reselect />)
+      },
+      {
+        path: '/library/saga',
+        title: 'Saga',
+        component: (<Saga />)
       },
     ]} />
   )

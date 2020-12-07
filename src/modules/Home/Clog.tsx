@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../../reducers';
+import { RootState } from '@/reducers';
 
 import styles from './Clog.module.css';
 

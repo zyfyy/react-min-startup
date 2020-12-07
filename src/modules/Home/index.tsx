@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
-import { add_clog, clear_clog, warning_clear_clog } from '../../actions/clog';
+import { add_clog, clear_clog, warning_clear_clog } from '@/actions/clog';
 import Clog from './Clog';
 
 const mapDispatchToProps = { add_clog, clear_clog, warning_clear_clog };
@@ -34,7 +34,7 @@ class Home extends Component<PropsFromRedux> {
     return (
       <div>
         <div id="app">
-          HOME TEST.
+          <h4>HOME REACT REDUX THUNK TEST.</h4>
           <br></br>
           <button onClick={this.buttonOnClick}>click to clog</button>
           <button onClick={this.clearButtonOnClick}>click to clear</button>
