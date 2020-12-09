@@ -1,41 +1,56 @@
 # REACT-MIN-STARTUP
-本项目提供最小集的react-web-app开发的初始脚本配置、目录结构、基本功能
-- 自定义react栈，无脑使用react-create-script只是很好适合开始使用
-- 减少重复工作，提升web构建工程效率
+
+本项目提供最小集的 react-web-app 开发的初始脚本配置、目录结构、基本功能
+
+- 自定义 react 栈，无脑使用 react-create-script 只是很好适合开始使用
+- 减少重复工作，提升 web 构建工程效率
 - 提供基本的集成功能如`antd` `echarts` `hotload`等等，其他能力慢慢集成进来，后续只需要按需增减
-- 本文档记录如何一步一步构建一个最小的基础的react-web-app
+- 本文档记录构建健壮的 react-web-app 的最小实践
 
 # webpack
 
-# babel
+## feature
 
-# hot-load
-## hot-load doc
-https://webpack.docschina.org/api/hot-module-replacement
-## use hot-loader react-dom
-https://github.com/gaearon/react-hot-loader
+- 支持 typescript
+- 根据环境不同，设置不同配置执行
+- hotload 使用 react refresh 弃用 原来的`react-hot-loader`，暂无实现前后端一体 server
+- 支持 sourcemap
+- 根路径 alias
+- css module(目前为 auto)
+- postcss postcss 更多插件了解中
+
+## 优化
+
+- 升级至 webpack5 使用 cache 加速构建启动速度
+- splitChunk 弃用动态库
 
 # react
-## quick lookinto react
-> https://codepen.io/gaearon/pen/gWWZgR?editors=0010
+
+update to react17
+
+- use hoc
+- use render prop
+- context
 
 # redux
-## install step
-> https://react-redux.js.org/introduction/quick-start
 
-`yarn add react-redux`
-## redux-async
-
-# eslint
-尽量符合百度js的代码规范，在代码开发阶段就能够检测出来一些代码风格问题，防止cr后才去修改，保持良好的代码书写风格
-
+- redux-thunk support
+- redux-saga support
 
 # react-router
-1. 这里考虑使用基于history的router
-2. 基于webpack dev server 的historyApiFallback，可以保证刷新后仍然能够正常展示
-3. router参数获取
 
+1. 这里考虑使用基于 history 的 router
+2. 基于 webpack dev server 的 historyApiFallback，可以保证刷新后仍然能够正常展示
+3. router 参数获取
 
-# TODO
-- antd
-- echarts
+# 集成更多优秀的类库、思想、框架、设计理念
+
+1. hooks
+
+   - huse `//TODO`
+
+2. ui
+
+   - form 相关 `//TODO`
+   - echarts `//TODO`
+   - d3 `//TODO`

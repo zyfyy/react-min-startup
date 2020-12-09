@@ -1,5 +1,5 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { ThemeContext, themes, ContextState } from '../../theme-context';
+import { ThemeContext, themes, ContextState } from '../../context/theme-context';
 import ThemeParagraph from '../../components/ThemeParagraph';
 
 interface ThemeToggleButtonProps {
