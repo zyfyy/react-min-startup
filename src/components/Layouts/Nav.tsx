@@ -5,7 +5,7 @@ import styles from './Nav.module.less';
 
 export interface NavRouteType {
   path: string,
-  text: string,
+  title: string,
   exact?: boolean,
   component: ReactNode
 }
@@ -22,7 +22,7 @@ const Nav: FC<NavRouteProps> = ({ routes }) => {
         {
           routes.map((route: NavRouteType, idx: number) => (
             <li key={idx} className={styles.crumb}>
-              <Link to={route.path}>{route.text}</Link>
+              <Link to={route.path}>{route.title}</Link>
             </li>
           ))
         }

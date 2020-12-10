@@ -8,6 +8,7 @@ import Home from './modules/Home';
 import About from './modules/About';
 import Topics from './modules/Topics';
 import Library from './modules/Library';
+import Virtual from './modules/Virtual';
 
 
 import './App.css';
@@ -15,24 +16,29 @@ import './App.css';
 const routes: NavRouteType[] = [
   {
     path: '/',
-    text: 'Home',
+    title: 'Home',
     exact: true,
     component: (<Home/>)
   },
   {
     path: '/about',
-    text: 'About',
+    title: 'About',
     component: (<About/>),
   },
   {
     path: '/topics',
-    text: 'Topics',
+    title: 'Topics',
     component: (<Topics/>),
   },
   {
     path: '/library',
-    text: 'Library',
+    title: 'Library',
     component: (<Library/>),
+  },
+  {
+    path: '/Virtual',
+    title: 'Virtual',
+    component: (<Virtual />),
   }
 ]
 
