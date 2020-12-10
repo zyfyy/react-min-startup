@@ -1,5 +1,6 @@
 import React from 'react';
 import { LoremIpsum } from 'lorem-ipsum';
+import { List } from 'react-virtualized';
 import './Virtualized.css';
 
 type rowItem = {
@@ -34,21 +35,33 @@ const list = Array<rowItem | null>(rowCount)
     };
   });
 
+const listHeight = 600;
+const rowHeight = 50;
+const rowWidth = 800;
+
+const renderer = ({ index, key, style }) => {
+  return (
+    <div key={key} style={style} className="row">
+      <div className="image">
+        <img src={list[index].image} alt="" />
+      </div>
+      <div className="content">
+        <div>{list[index].name}</div>
+        <div>{list[index].text}</div>
+      </div>
+    </div>
+  );
+};
+
 const Virtualized = () => {
   return (
-    <>
-      {list.map((item) => (
-        <div key={item.id} className="row">
-          <div className="image">
-            <img src={item.image} alt="" />
-          </div>
-          <div className="content">
-            <div>{item.name}</div>
-            <div>{item.text}</div>
-          </div>
-        </div>
-      ))}
-    </>
+    <List
+      width={rowWidth}
+      height={listHeight}
+      rowHeight={rowHeight}
+      rowRenderer={renderer}
+      rowCount={list.length}
+    />
   );
 };
 
