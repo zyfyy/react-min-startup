@@ -1,5 +1,6 @@
 .list {
   padding: 10px;
+  height: calc(100vh - 200px);
 }
 .row { 
   border-bottom: 1px solid #ebeced;

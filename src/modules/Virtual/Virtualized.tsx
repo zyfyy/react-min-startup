@@ -1,6 +1,11 @@
 import React from 'react';
 import { LoremIpsum } from 'lorem-ipsum';
-import { List } from 'react-virtualized';
+import {
+  List,
+  AutoSizer,
+  Size,
+  ListRowRenderer,
+} from 'react-virtualized';
 import './Virtualized.css';
 
 type rowItem = {
@@ -39,7 +44,7 @@ const listHeight = 600;
 const rowHeight = 50;
 const rowWidth = 800;
 
-const renderer = ({ index, key, style }) => {
+const renderer: ListRowRenderer = ({ index, key, style }) => {
   return (
     <div key={key} style={style} className="row">
       <div className="image">
@@ -53,15 +58,24 @@ const renderer = ({ index, key, style }) => {
   );
 };
 
-const Virtualized = () => {
+const Content = ({ width, height }: Size) => {
   return (
     <List
-      width={rowWidth}
-      height={listHeight}
+      width={width}
+      height={height}
       rowHeight={rowHeight}
       rowRenderer={renderer}
       rowCount={list.length}
+      overscanRowCount={3}
     />
+  );
+};
+
+const Virtualized = () => {
+  return (
+    <div className="list">
+      <AutoSizer>{Content}</AutoSizer>
+    </div>
   );
 };
 
