@@ -10,36 +10,36 @@ import Memo from './Memo';
 
 const topicRoutes: SubPageRouteType[] = [
   {
-    path: '/topics/hook',
+    path: '/basics/hook',
     title: 'Hook',
     component: (<Hook />)
   },
   {
-    path: '/topics/hoc',
+    path: '/basics/hoc',
     title: 'Hoc',
     component: (<Hoc />)
   },
   {
-    path: '/topics/ref',
+    path: '/basics/ref',
     title: 'Ref',
     component: (<Ref />)
   },
   {
-    path: '/topics/context',
+    path: '/basics/context',
     title: 'Context',
     component: (<Context />)
   },
   {
-    path: '/topics/Memo',
+    path: '/basics/Memo',
     title: 'Memo',
     component: (<Memo />)
   },
 ]
 
-export default class Topics extends Component {
+export default class Basics extends Component {
   render() {
     return (
-      <SubPage routes={topicRoutes} title="Topics" />
+      <SubPage routes={topicRoutes} title="Basics" />
     );
   }
 }

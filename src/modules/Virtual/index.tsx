@@ -1,7 +1,9 @@
 import React from 'react'
 import Page from '@/components/SubPage';
+
 import Normal from './Normal';
 import Virtualized from './Virtualized';
+import Window from './Window';
 
 const index = () => {
   return (
@@ -15,7 +17,7 @@ const index = () => {
         {
           title: 'window',
           path: '/virtual/window',
-          component: (<div>ss</div>),
+          component: (<Window />),
         },
         {
           title: 'vitualized',
