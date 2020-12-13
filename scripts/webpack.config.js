@@ -7,6 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const postcssPresetEnv = require('postcss-preset-env');
 
+const ConsoleLogOnBuildWebpackPlugin = require('./cus-plugin');
+
+
 const mode = process.env.NODE_ENV || 'development';
 const isDevelopment = mode === 'development';
 
@@ -93,13 +96,13 @@ let appConfig = {
   output: {
     path: path.resolve(__dirname, '../dist/'),
     publicPath: '/',
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
   },
   optimization: {
     splitChunks: {
       chunks: 'all',
       maxSize: 1024 * 1024,
-      minSize: 1024 * 24,
+      minSize: 1024 * 10,
       cacheGroups: {
         vendor: {
           name: 'vendor',
@@ -117,6 +120,7 @@ let appConfig = {
   },
   devtool: false,
   plugins: [
+    new ConsoleLogOnBuildWebpackPlugin({}),
     new HtmlWebpackPlugin({
       title: 'mini react startup',
       meta: {
