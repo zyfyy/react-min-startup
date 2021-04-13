@@ -1,35 +1,36 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { ThemeContext, themes, ContextState } from '../../context/theme-context';
+import {
+  ThemeContext,
+  themes,
+  ContextState,
+} from '../../context/theme-context';
 import ThemeParagraph from '../../components/ThemeParagraph';
 
 interface ThemeToggleButtonProps {
-  toggleTheme: MouseEventHandler
+  toggleTheme: MouseEventHandler;
 }
 
-const ThemeToggleButton : FC<ThemeToggleButtonProps> = (props) => {
-  const {toggleTheme} = props;
+const ThemeToggleButton: FC<ThemeToggleButtonProps> = (
+  props: ThemeToggleButtonProps,
+) => {
+  const { toggleTheme } = props;
   return (
     <ThemeContext.Consumer>
-      {theme => {
+      {(theme) => {
         return (
           <button
             onClick={toggleTheme}
-            style={{ backgroundColor: theme.background }}
-          >
+            style={{ backgroundColor: theme.background }}>
             Toggle Theme
           </button>
         );
       }}
     </ThemeContext.Consumer>
   );
-}
+};
 
 const ChildContext = () => {
-  return (
-    <ThemeParagraph>
-      child context
-    </ThemeParagraph>
-  )
+  return <ThemeParagraph>child context</ThemeParagraph>;
 };
 
 class Context extends React.Component<{}, ContextState> {
@@ -60,7 +61,7 @@ class Context extends React.Component<{}, ContextState> {
         </section>
 
         <ThemeContext.Provider value={this.state.theme}>
-          <ThemeToggleButton toggleTheme={this.toggleTheme}/>
+          <ThemeToggleButton toggleTheme={this.toggleTheme} />
         </ThemeContext.Provider>
       </div>
     );

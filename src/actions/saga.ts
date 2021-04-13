@@ -10,6 +10,6 @@ export interface INCREMENT_ASYNC_TYPE {
 
 export function increase(): INCREMENT_ASYNC_TYPE {
   return {
-    type: INCREMENT_ASYNC
+    type: INCREMENT_ASYNC,
   };
 }
