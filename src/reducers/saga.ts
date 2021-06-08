@@ -2,7 +2,7 @@ import { INCREMENT } from '@/constants/actionTypes';
 import { INCREMENT_TYPE } from '@/actions/saga';
 
 export interface LogState {
-  count: number
+  count: number;
 }
 
 const initialState: LogState = {
@@ -13,7 +13,7 @@ const clogRecord = (state = initialState, action: INCREMENT_TYPE): LogState => {
   switch (action.type) {
     case INCREMENT: {
       return {
-        count: state.count + 1
+        count: state.count + 1,
       };
     }
     default: {

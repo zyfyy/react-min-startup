@@ -2,9 +2,9 @@ import React, { Component, ComponentType } from 'react';
 
 const withDidUpdateLog = <P extends object>(Component: ComponentType<P>) => {
   class logProps extends React.Component {
-    componentDidUpdate(prevProps: {}) {
-      console.log('Current props: ', this.props);
-      console.log('Previous props: ', prevProps);
+    componentDidUpdate() {
+      // console.log('Current props: ', this.props);
+      // console.log('Previous props: ', prevProps);
     }
 
     render() {
@@ -13,14 +13,14 @@ const withDidUpdateLog = <P extends object>(Component: ComponentType<P>) => {
       return (
         <div>
           hoc ability withDidUpdateLog
-          <Component {...props as P} />
+          <Component {...(props as P)} />
         </div>
       );
     }
   }
 
   return logProps;
-}
+};
 
 class HOC extends Component {
   render() {

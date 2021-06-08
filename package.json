@@ -10,7 +10,7 @@
     "clean": "rm -rf ./dist",
     "serve": "http-server ./dist/",
     "prepare": "husky install",
-    "lint": "eslint . --ext .tsx,.ts -f table && npx stylelint '**/*.{less,css}' -f verbose"
+    "lint": "eslint . --ext .tsx,.ts -f table && stylelint '**/*.{less,css}' -f verbose"
   },
   "lint-staged": {
     "**/*.ts?(x)": [

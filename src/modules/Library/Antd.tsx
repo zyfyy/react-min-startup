@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Button, DatePicker, version } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -9,7 +9,7 @@ export const AntdC = () => {
       <DatePicker />
       <Button type="primary" style={{ marginLeft: 8 }}>
         Primary Button
-    </Button>
+      </Button>
     </div>
-  )
-}
+  );
+};

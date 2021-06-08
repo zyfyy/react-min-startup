@@ -4,26 +4,23 @@ import React, {
   useContext,
   useReducer,
   useCallback,
-  useMemo,
   useRef,
   useLayoutEffect,
   useDebugValue,
   Dispatch,
   FC,
-  ReactNode
+  ReactNode,
 } from 'react';
-
-
 
 import { ThemeContext } from '../../context/theme-context';
 
 // useReducer 是useState的替代方案，某些情况下，useState更方便
 type ReducerState = {
-  count: number
-}
+  count: number;
+};
 type ReducerAction = {
-  type: 'increment' | 'decrement'
-}
+  type: 'increment' | 'decrement';
+};
 
 const initialState = {
   count: 0,
@@ -52,10 +49,10 @@ function useTestDebug() {
   return isDebug;
 }
 type HrProps = {
-  title: String,
-  children: ReactNode
-}
-const Hr: FC<HrProps> = (props) => {
+  title: String;
+  children: ReactNode;
+};
+const Hr: FC<HrProps> = (props: HrProps) => {
   return (
     <div>
       <h5 style={{ margin: 0, color: 'blue' }}>{props.title}:</h5>
@@ -65,9 +62,8 @@ const Hr: FC<HrProps> = (props) => {
   );
 };
 
-
 // child counter
-const Counter = ({ dispatch } : {dispatch: Dispatch<ReducerAction>}) => {
+const Counter = ({ dispatch }: { dispatch: Dispatch<ReducerAction> }) => {
   return (
     <>
       <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
@@ -80,7 +76,7 @@ const Hook = () => {
   // useState
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(0);
-  const [count3, setCount3] = useState(0);
+  // const [count3] = useState(0);
 
   // useEffect  每轮渲染结束后执行
   useEffect(() => {
@@ -102,11 +98,11 @@ const Hook = () => {
   }, [Math.floor(count2 / 5)]);
 
   // useMemo
-  const num = useMemo(() => {
-    let num = 0;
-    // 这里使用 count 针对 num 做一些很复杂的计算，当 count 没改变的时候，组件重新渲染就会直接返回之前缓存的值。
-    return num;
-  }, [count3]);
+  // const num = useMemo(() => {
+  //   let num = 0;
+  //   // 这里使用 count 针对 num 做一些很复杂的计算，当 count 没改变的时候，组件重新渲染就会直接返回之前缓存的值。
+  //   return num;
+  // }, [count3]);
 
   // useRef
   const inputEl = useRef<HTMLInputElement>(null);
@@ -131,8 +127,7 @@ const Hook = () => {
     <div>
       <Hr title="useState & useEffect">
         <div>
-          topick {count}{' '}
-          <button onClick={() => setCount(count + 1)}>click me</button>
+          topick {count} <button onClick={() => setCount(count + 1)}>click me</button>
         </div>
       </Hr>
 

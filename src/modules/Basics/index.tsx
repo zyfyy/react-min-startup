@@ -12,34 +12,32 @@ const topicRoutes: SubPageRouteType[] = [
   {
     path: '/basics/hook',
     title: 'Hook',
-    component: (<Hook />)
+    component: <Hook />,
   },
   {
     path: '/basics/hoc',
     title: 'Hoc',
-    component: (<Hoc />)
+    component: <Hoc />,
   },
   {
     path: '/basics/ref',
     title: 'Ref',
-    component: (<Ref />)
+    component: <Ref />,
   },
   {
     path: '/basics/context',
     title: 'Context',
-    component: (<Context />)
+    component: <Context />,
   },
   {
     path: '/basics/Memo',
     title: 'Memo',
-    component: (<Memo />)
+    component: <Memo />,
   },
-]
+];
 
 export default class Basics extends Component {
   render() {
-    return (
-      <SubPage routes={topicRoutes} title="Basics" />
-    );
+    return <SubPage routes={topicRoutes} title="Basics" />;
   }
 }

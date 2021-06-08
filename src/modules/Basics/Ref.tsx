@@ -1,8 +1,7 @@
-import React, {Component, RefObject, useRef} from 'react';
+import React, { Component, RefObject } from 'react';
 
-class Ref extends Component{
+class Ref extends Component {
   textInput: RefObject<HTMLInputElement>;
-
 
   constructor(prop: {}) {
     super(prop);
@@ -11,7 +10,6 @@ class Ref extends Component{
     // this.textInput2 = useRef(null);
     this.focusTextInput = this.focusTextInput.bind(this);
   }
-  
 
   focusTextInput() {
     // 直接使用原生 API 使 text 输入框获得焦点
@@ -27,6 +25,7 @@ class Ref extends Component{
   }
 
   refCb(ins: HTMLInputElement) {
+    // eslint-disable-next-line
     console.log(ins);
   }
 
@@ -39,16 +38,8 @@ class Ref extends Component{
 
         <input type="text" ref={this.refCb} />
         <hr></hr>
-        <input
-          type="button"
-          value="Focus the text input1"
-          onClick={this.focusTextInput}
-        />
-        <input
-          type="button"
-          value="Focus the text input2"
-          onClick={this.focusTextInput2}
-        />
+        <input type="button" value="Focus the text input1" onClick={this.focusTextInput} />
+        <input type="button" value="Focus the text input2" onClick={this.focusTextInput2} />
       </div>
     );
   }

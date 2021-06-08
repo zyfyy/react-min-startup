@@ -1,16 +1,16 @@
-import {ADD_LOG, CLEAR_LOG} from '../constants/actionTypes';
-import {ClogActionTypes} from '../actions/clog';
+import { ADD_LOG, CLEAR_LOG } from '../constants/actionTypes';
+import { ClogActionTypes } from '../actions/clog';
 
 export type Log = string;
 export interface LogState {
-  logs: Log[]
+  logs: Log[];
 }
 
 const initialState: LogState = {
   logs: [],
 };
 
-const clogRecord = (state = initialState, action: ClogActionTypes) : LogState=> {
+const clogRecord = (state = initialState, action: ClogActionTypes): LogState => {
   switch (action.type) {
     case ADD_LOG: {
       return {

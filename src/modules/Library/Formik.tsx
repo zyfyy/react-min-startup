@@ -7,7 +7,6 @@ interface Values {
   email: string;
 }
 
-
 const Basic = () => (
   <div>
     <h3>Signup</h3>
@@ -17,10 +16,7 @@ const Basic = () => (
         lastName: '',
         email: '',
       }}
-      onSubmit={(
-        values: Values,
-        { setSubmitting }: FormikHelpers<Values>
-      ) => {
+      onSubmit={(values: Values, { setSubmitting }: FormikHelpers<Values>) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
@@ -35,12 +31,7 @@ const Basic = () => (
         <Field id="lastName" name="lastName" placeholder="Doe" />
 
         <label htmlFor="email">Email</label>
-        <Field
-          id="email"
-          name="email"
-          placeholder="john@acme.com"
-          type="email"
-        />
+        <Field id="email" name="email" placeholder="john@acme.com" type="email" />
 
         <button type="submit">Submit</button>
       </Form>

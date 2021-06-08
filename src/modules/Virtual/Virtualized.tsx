@@ -35,7 +35,7 @@ const list = Array<rowItem | null>(rowCount)
     return {
       id: idx,
       name: [lorem.generateWords(1), lorem.generateWords(1)]
-        .map((word) => word.replace(/^\S/, (s) => s.toUpperCase()))
+        .map(word => word.replace(/^\S/, s => s.toUpperCase()))
         .join(' '),
       image: 'http://via.placeholder.com/40',
       text: lorem.generateParagraphs(1),
@@ -45,17 +45,11 @@ const list = Array<rowItem | null>(rowCount)
 const Content = ({ width, height }: Size) => {
   const cache = new CellMeasurerCache({
     fixedWidth: true,
-    defaultHeight: 100
+    defaultHeight: 100,
   });
   const renderer: ListRowRenderer = ({ index, key, style, parent }) => {
     return (
-      <CellMeasurer
-        key={key}
-        cache={cache}
-        parent={parent}
-        columnIndex={0}
-        rowIndex={index}
-      >
+      <CellMeasurer key={key} cache={cache} parent={parent} columnIndex={0} rowIndex={index}>
         <div style={style} className="row">
           <div className="image">
             <img src={list[index].image} alt="" />

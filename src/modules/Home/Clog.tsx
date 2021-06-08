@@ -5,7 +5,7 @@ import { RootState } from '@/reducers';
 import styles from './Clog.module.css';
 
 type propTypes = {
-  logList: Array<String>,
+  logList: Array<String>;
 };
 
 class Clog extends Component<propTypes> {
@@ -26,6 +26,6 @@ class Clog extends Component<propTypes> {
 const mapStateToProps = (state: RootState) => {
   const { logs } = state.clog;
   return { logList: logs };
-}
+};
 
 export default connect(mapStateToProps)(Clog);
