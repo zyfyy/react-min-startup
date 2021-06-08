@@ -1,34 +1,34 @@
 import { Dispatch } from 'redux';
-import {ADD_LOG, CLEAR_LOG} from '../constants/actionTypes';
-import {Log} from '../reducers/clog'
+import { ADD_LOG, CLEAR_LOG } from '../constants/actionTypes';
+import { Log } from '../reducers/clog';
 
 interface AddClog {
-  type: typeof ADD_LOG
-  text: Log
+  type: typeof ADD_LOG;
+  text: Log;
 }
 
 interface ClearClog {
-  type: typeof CLEAR_LOG
+  type: typeof CLEAR_LOG;
 }
 
 export type ClogActionTypes = AddClog | ClearClog;
 
-export function add_clog(text: string): ClogActionTypes{
+export function addClog(text: string): ClogActionTypes {
   return {
     type: ADD_LOG,
     text,
   };
 }
 
-export function clear_clog(): ClogActionTypes {
+export function clearClog(): ClogActionTypes {
   return {
     type: CLEAR_LOG,
   };
 }
 
-export function warning_clear_clog() {
+export function warningClearClog() {
   return (dispatch: Dispatch) => {
-    dispatch(add_clog('warning: logs will be cleard soon'));
-    setTimeout(() => dispatch(clear_clog()), 2000);
+    dispatch(addClog('warning: logs will be cleard soon'));
+    setTimeout(() => dispatch(clearClog()), 2000);
   };
 }

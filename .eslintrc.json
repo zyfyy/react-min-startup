@@ -1,78 +1,57 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "ignorePatterns": ["dist/*.js"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
     ],
-    "ignorePatterns": [
-        "dist/*.js"
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": true
+      }
     ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "indent": [
-            "error",
-            2,
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always",
-            {
-                "omitLastInOneLineBlock": true
-            }
-        ],
-        "object-curly-spacing": [
-            2,
-            "always"
-        ],
-        "comma-dangle": [
-            2,
-            "always-multiline"
-        ],
-        "no-trailing-spaces": 2,
-        "no-console": 1,
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error"
-        ]
-    },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
-    "overrides": [
-        {
-            "files": [
-                "*.ts,*.tsx"
-            ],
-            "extends": [
-                "plugin:@typescript-eslint/recommended"
-            ]
-        }
-    ]
+    "object-curly-spacing": [2, "always"],
+    "comma-dangle": [2, "always-multiline"],
+    "no-trailing-spaces": 2,
+    "no-console": 1,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts,*.tsx"],
+      "extends": ["plugin:@typescript-eslint/recommended"]
+    }
+  ],
+  "globals": {
+    "PRODUCTION": true,
+    "process": true
+  }
 }

@@ -7,9 +7,9 @@
 - 提供基本的集成功能如`antd` `echarts` `hotload`等等，其他能力慢慢集成进来，后续只需要按需增减
 - 本文档记录构建健壮的 react-web-app 的最小实践
 
-# webpack
+## webpack
 
-## feature
+### feature
 
 - 支持 typescript
 - 根据环境不同，设置不同配置执行
@@ -19,12 +19,12 @@
 - css module(目前为 auto)
 - postcss postcss 更多插件了解中
 
-## 优化
+### 优化
 
 - 升级至 webpack5 使用 cache 加速构建启动速度
 - splitChunk 弃用动态库
 
-# react
+## react
 
 update to react17
 
@@ -32,22 +32,22 @@ update to react17
 - use render prop
 - context
 
-# redux
+## redux
 
 - redux-thunk support
 - redux-saga support
 
-# react-router
+## react-router
 
 1. 这里考虑使用基于 history 的 router
 2. 基于 webpack dev server 的 historyApiFallback，可以保证刷新后仍然能够正常展示
 3. router 参数获取
 
-# 集成更多优秀的类库、思想、框架、设计理念
+## 集成更多优秀的类库、思想、框架、设计理念
 
 1. hooks
 
-   - huse `//TODO`
+   - huse
 
 2. ui
 
