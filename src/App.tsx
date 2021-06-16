@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
 import Nav, { NavRouteType } from './components/Layouts/Nav';
@@ -10,6 +10,7 @@ import Basics from './modules/Basics';
 import Library from './modules/Library';
 import Virtual from './modules/Virtual';
 import Hooks from './modules/Hooks';
+import Hoc from './modules/Hoc';
 
 import './App.css';
 
@@ -39,6 +40,11 @@ const routes: NavRouteType[] = [
     path: '/hooks',
     title: 'Hooks',
     component: <Hooks />,
+  },
+  {
+    path: '/hoc',
+    title: 'HOC',
+    component: <Hoc />,
   },
   {
     path: '/about',
