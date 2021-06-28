@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const postcssPresetEnv = require('postcss-preset-env');
 
 const ConsoleLogOnBuildWebpackPlugin = require('./cus-plugin');
 
@@ -68,8 +67,10 @@ let appConfig = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [
-                  postcssPresetEnv({ stage: 0 }),
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                  ],
                 ],
               },
             },
