@@ -11,6 +11,7 @@ import Library from './modules/Library';
 import Virtual from './modules/Virtual';
 import Hooks from './modules/Hooks';
 import Hoc from './modules/Hoc';
+import LifeCycle from './modules/LifeCycle';
 
 import './App.css';
 
@@ -45,6 +46,11 @@ const routes: NavRouteType[] = [
     path: '/hoc',
     title: 'HOC',
     component: <Hoc />,
+  },
+  {
+    path: '/lifecycle',
+    title: 'LIFE-CYCLE',
+    component: <LifeCycle />,
   },
   {
     path: '/about',
