@@ -77,6 +77,7 @@
     "react-dom": "18.0.0-alpha-73ffce1b6-20210624",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-use": "^17.2.4",
     "react-virtualized": "^9.22.2",
     "react-window": "^1.8.6",
     "redux": "^4.1.1",
