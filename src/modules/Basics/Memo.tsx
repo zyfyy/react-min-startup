@@ -1,8 +1,10 @@
+import { intl } from 'di18n-react';
 import React, { useState, useCallback, useMemo, memo } from 'react';
 
 const Child = () => {
-  return <div>我是一个子组件</div>;
+  return <div>{intl.t('我是一个子组件')}</div>;
 };
+
 const ChildMemo = memo(Child);
 
 const Page = () => {
@@ -14,7 +16,7 @@ const Page = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <Child />
@@ -23,8 +25,8 @@ const Page = () => {
 };
 
 const Page2 = () => {
-  const [count, setCount] = useState(0);
-  // 没有属性传入子组件，子组件不重新渲染
+  const [count, setCount] = useState(0); // 没有属性传入子组件，子组件不重新渲染
+
   return (
     <>
       <button
@@ -32,29 +34,31 @@ const Page2 = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <ChildMemo />
     </>
   );
-};
+}; //子组件会有不必要渲染的例子
 
-//子组件会有不必要渲染的例子
 const Child2 = ({ name, onClick }: { name: string; onClick: Function }) => {
   return (
     <>
-      <div>我是一个子组件，父级传过来的数据：{name}</div>
-      <button onClick={onClick.bind(null, '新的子组件name')}>改变name</button>
+      <div>
+        {intl.t('我是一个子组件，父级传过来的数据：')}
+        {name}
+      </div>
+      <button onClick={onClick.bind(null, intl.t('新的子组件name'))}>{intl.t('改变name')}</button>
     </>
   );
 };
+
 const ChildMemo2 = memo(Child2);
 
 const Page3 = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState('Child组件');
-
+  const [name, setName] = useState(intl.t('Child组件'));
   return (
     <>
       <button
@@ -62,7 +66,7 @@ const Page3 = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <ChildMemo2 name={name} onClick={(newName: string) => setName(newName)} />
@@ -72,8 +76,7 @@ const Page3 = () => {
 
 const Page4 = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState('Child组件');
-
+  const [name, setName] = useState(intl.t('Child组件'));
   return (
     <>
       <button
@@ -81,7 +84,7 @@ const Page4 = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <ChildMemo2 name={name} onClick={useCallback(newName => setName(newName), [])} />
@@ -95,13 +98,23 @@ const Child3 = ({
   name,
   onClick,
 }: {
-  name: { name: string; color: 'red' | 'green' };
+  name: {
+    name: string;
+    color: 'red' | 'green';
+  };
   onClick: Function;
 }) => {
   return (
     <>
-      <div style={{ color: name.color }}>我是一个子组件，父级传过来的数据：{name.name}</div>
-      <button onClick={onClick.bind(null, '新的子组件name')}>改变name</button>
+      <div
+        style={{
+          color: name.color,
+        }}
+      >
+        {intl.t('我是一个子组件，父级传过来的数据：')}
+        {name.name}
+      </div>
+      <button onClick={onClick.bind(null, intl.t('新的子组件name'))}>{intl.t('改变name')}</button>
     </>
   );
 };
@@ -110,7 +123,7 @@ const ChildMemo3 = memo(Child3);
 
 const Page5 = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState('Child组件');
+  const [name, setName] = useState(intl.t('Child组件'));
   return (
     <>
       <button
@@ -118,11 +131,14 @@ const Page5 = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <ChildMemo3
-        name={{ name, color: name.indexOf('name') !== -1 ? 'red' : 'green' }}
+        name={{
+          name,
+          color: name.indexOf('name') !== -1 ? 'red' : 'green',
+        }}
         onClick={useCallback(newName => setName(newName), [])}
       />
     </>
@@ -131,7 +147,7 @@ const Page5 = () => {
 
 const Page6 = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState('Child组件');
+  const [name, setName] = useState(intl.t('Child组件'));
   return (
     <>
       <button
@@ -139,7 +155,7 @@ const Page6 = () => {
           setCount(count + 1);
         }}
       >
-        加1
+        {intl.t('加1')}
       </button>
       <p>count:{count}</p>
       <ChildMemo3
@@ -148,7 +164,7 @@ const Page6 = () => {
             name,
             color: name.indexOf('name') !== -1 ? 'red' : 'green',
           }),
-          [name]
+          [name],
         )}
         onClick={useCallback(newName => setName(newName), [])}
       />

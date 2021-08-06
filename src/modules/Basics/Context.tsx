@@ -1,26 +1,23 @@
+import { intl } from 'di18n-react';
 import React, { FC, MouseEventHandler } from 'react';
-import {
-  ThemeContext,
-  themes,
-  ContextState,
-} from '../../context/theme-context';
+import { ThemeContext, themes, ContextState } from '../../context/theme-context';
 import ThemeParagraph from '../../components/ThemeParagraph';
-
 interface ThemeToggleButtonProps {
   toggleTheme: MouseEventHandler;
 }
 
-const ThemeToggleButton: FC<ThemeToggleButtonProps> = (
-  props: ThemeToggleButtonProps,
-) => {
+const ThemeToggleButton: FC<ThemeToggleButtonProps> = (props: ThemeToggleButtonProps) => {
   const { toggleTheme } = props;
   return (
     <ThemeContext.Consumer>
-      {(theme) => {
+      {theme => {
         return (
           <button
             onClick={toggleTheme}
-            style={{ backgroundColor: theme.background }}>
+            style={{
+              backgroundColor: theme.background,
+            }}
+          >
             Toggle Theme
           </button>
         );
@@ -43,21 +40,22 @@ class Context extends React.Component<{}, ContextState> {
   }
 
   toggleTheme = () => {
-    this.setState((state) => ({
+    this.setState(state => ({
       theme: state.theme === themes.dark ? themes.light : themes.dark,
     }));
   };
+
   render() {
     return (
       <div className="context">
         <ThemeContext.Provider value={this.state.theme}>
           <button onClick={this.toggleTheme}>toggle</button>
-          <ThemeParagraph>我会变</ThemeParagraph>
+          <ThemeParagraph>{intl.t('我会变')}</ThemeParagraph>
           <ChildContext></ChildContext>
         </ThemeContext.Provider>
         {/* 没有Provider内，使用默认的值 */}
         <section>
-          <ThemeParagraph>我不会-变</ThemeParagraph>
+          <ThemeParagraph>{intl.t('我不会-变')}</ThemeParagraph>
         </section>
 
         <ThemeContext.Provider value={this.state.theme}>
