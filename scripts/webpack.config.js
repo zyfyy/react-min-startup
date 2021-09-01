@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const ConsoleLogOnBuildWebpackPlugin = require('./cus-plugin');
 
@@ -133,6 +134,10 @@ let appConfig = {
       PRODUCTION: JSON.stringify(false),
       TWO: '1+1',
       THREE: JSON.stringify('object'),
+    }),
+    new WorkboxPlugin.GenerateSW({
+      navigateFallback: '/index.html',
+      maximumFileSizeToCacheInBytes:  10 *1024 * 1024,
     }),
   ],
 };

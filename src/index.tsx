@@ -14,11 +14,10 @@ if (PRODUCTION) {
   console.log('prod', PRODUCTION);
 }
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <Router>
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root'),
 );
