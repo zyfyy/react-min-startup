@@ -72,7 +72,7 @@
     "antd": "^4.16.10",
     "formik": "^2.2.9",
     "i": "^0.3.6",
-    "immer": "^9.0.5",
+    "immer": "^9.0.6",
     "lorem-ipsum": "^2.0.3",
     "react": "18.0.0-alpha-73ffce1b6-20210624",
     "react-dom": "18.0.0-alpha-73ffce1b6-20210624",
