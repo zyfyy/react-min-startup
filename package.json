@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && NODE_ENV=production webpack --config ./scripts/webpack.config.js",
-    "start": "NODE_ENV=development webpack serve --config ./scripts/webpack.server.config.js",
+    "start": "cross-env NODE_ENV=development webpack serve --config ./scripts/webpack.server.config.js",
     "clean": "rm -rf ./dist",
     "serve": "http-server ./dist/",
     "prepare": "husky install",
@@ -40,6 +40,7 @@
     "@typescript-eslint/parser": "^4.29.0",
     "babel-eslint": "^11.0.0-beta.2",
     "babel-loader": "^8.0.6",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
