@@ -1,7 +1,7 @@
 import React from 'react';
 import SubPage from '@/components/SubPage';
 
-import Huse from './Huse';
+// import Huse from './Huse';
 import ReactUse from './ReactUse';
 
 const index = () => {
@@ -12,7 +12,7 @@ const index = () => {
         {
           path: '/hooks/huse',
           title: 'Huse',
-          component: <Huse />,
+          component: <ReactUse />,
         },
         {
           path: '/hooks/react-use',
